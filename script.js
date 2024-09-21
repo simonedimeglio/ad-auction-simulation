@@ -12,6 +12,14 @@ class Advertiser {
   }
 }
 
+// Array to store all advertisers
+let advertisers = [
+  new Advertiser("TechGadgets", 2.5, 8),
+  new Advertiser("FashionTrends", 3.0, 6),
+  new Advertiser("TravelDeals", 1.8, 9),
+  new Advertiser("HomeDecor", 2.2, 7),
+];
+
 // Function to run the auction
 function runAuction(advertisers) {
   // Sort advertisers by ad rank in descending order
@@ -25,6 +33,7 @@ function displayAuctionResults(results) {
 
   // Create table for results
   let tableHTML = `
+        <h2>Auction Results</h2>
         <table>
             <tr>
                 <th>Rank</th>
@@ -61,14 +70,35 @@ function displayAuctionResults(results) {
     `;
 }
 
-// Sample advertisers
-const advertisers = [
-  new Advertiser("TechGadgets", 2.5, 8),
-  new Advertiser("FashionTrends", 3.0, 6),
-  new Advertiser("TravelDeals", 1.8, 9),
-  new Advertiser("HomeDecor", 2.2, 7),
-];
+// Function to add a new advertiser
+function addAdvertiser(event) {
+  event.preventDefault();
+  const name = document.getElementById("name").value;
+  const bid = parseFloat(document.getElementById("bid").value);
+  const qualityScore = parseInt(document.getElementById("quality").value);
 
-// Run the auction and display results
-const auctionResults = runAuction(advertisers);
-displayAuctionResults(auctionResults);
+  advertisers.push(new Advertiser(name, bid, qualityScore));
+
+  // Clear form fields
+  document.getElementById("new-advertiser-form").reset();
+
+  // Optionally, you can run the auction immediately after adding a new advertiser
+  // runAndDisplayAuction();
+}
+
+// Function to run the auction and display results
+function runAndDisplayAuction() {
+  const auctionResults = runAuction(advertisers);
+  displayAuctionResults(auctionResults);
+}
+
+// Event listeners
+document
+  .getElementById("new-advertiser-form")
+  .addEventListener("submit", addAdvertiser);
+document
+  .getElementById("run-auction")
+  .addEventListener("click", runAndDisplayAuction);
+
+// Initial auction run
+runAndDisplayAuction();

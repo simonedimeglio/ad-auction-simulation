@@ -3,22 +3,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Ad Auction Simulation</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css" />
-    <title>Ad Auction Simulation</title>
   </head>
   <body>
     <div class="container">
-      <h1>Basic Ad Auction Simulation</h1>
-      <div id="auction-results"></div>
-      <div id="auction-explanation"></div>
+      <h1 class="title">Ad Auction Simulation</h1>
+
+      <div class="card" id="advertiser-form">
+        <h2 class="card-title">Add New Advertiser</h2>
+        <form id="new-advertiser-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="bid">Bid Amount</label>
+            <input
+              type="number"
+              id="bid"
+              name="bid"
+              step="0.01"
+              min="0"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="quality">Quality Score</label>
+            <input
+              type="number"
+              id="quality"
+              name="quality"
+              min="1"
+              max="10"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary">Add Advertiser</button>
+        </form>
+      </div>
+
+      <div class="card" id="auction-controls">
+        <button id="run-auction" class="btn btn-secondary">Run Auction</button>
+      </div>
+
+      <div class="card" id="auction-results"></div>
+      <div class="card" id="auction-explanation"></div>
     </div>
 
     <script src="script.js"></script>
